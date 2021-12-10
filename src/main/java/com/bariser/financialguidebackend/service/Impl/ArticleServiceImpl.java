@@ -7,16 +7,17 @@ import com.bariser.financialguidebackend.service.ArticleService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.*;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.client.RestTemplate;
 
 import java.nio.charset.Charset;
 import java.util.List;
 
 @Service
+@Log4j2
 public class ArticleServiceImpl implements ArticleService {
 
     private final ArticleRepository articleRepository;
@@ -25,8 +26,8 @@ public class ArticleServiceImpl implements ArticleService {
         this.articleRepository = articleRepository;
     }
 
-    @GetMapping
-    public String getArticles() throws JsonProcessingException {
+    @Override
+    public String getArticlesFromCatcher() throws JsonProcessingException {
         final String uri = "https://api.newscatcherapi.com/v2/latest_headlines?countries=TR";
 
         RestTemplate restTemplate = new RestTemplate();

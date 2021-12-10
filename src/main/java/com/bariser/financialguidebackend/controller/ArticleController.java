@@ -16,8 +16,8 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
-    @GetMapping("getArticles")
-    public ResponseEntity<String> getArticles() throws JsonProcessingException {
-        return ResponseEntity.ok(articleService.getArticles());
+    @GetMapping("getArticlesFromCatcher")
+    public ResponseEntity<String> getArticlesFromCatcher() throws JsonProcessingException {
+        return ResponseEntity.ok(articleService.getArticlesFromCatcher());
     }
 }
