@@ -4,7 +4,9 @@ import com.bariser.financialguidebackend.dto.RescheduleJobDTO;
 import org.quartz.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RescheduleJob {
 
     private final Scheduler scheduler;

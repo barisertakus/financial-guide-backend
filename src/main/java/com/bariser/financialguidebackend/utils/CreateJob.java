@@ -3,7 +3,9 @@ package com.bariser.financialguidebackend.utils;
 import org.quartz.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CreateJob {
     private final Scheduler scheduler;
 
