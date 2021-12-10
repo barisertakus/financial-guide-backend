@@ -1,6 +1,7 @@
 package com.bariser.financialguidebackend.service.Impl;
 
 import com.bariser.financialguidebackend.dto.ApiResponse;
+import com.bariser.financialguidebackend.dto.ArticleDTO;
 import com.bariser.financialguidebackend.entity.Article;
 import com.bariser.financialguidebackend.repository.ArticleRepository;
 import com.bariser.financialguidebackend.service.ArticleService;
@@ -8,6 +9,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.log4j.Log4j2;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.http.*;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Service;
@@ -21,9 +24,11 @@ import java.util.List;
 public class ArticleServiceImpl implements ArticleService {
 
     private final ArticleRepository articleRepository;
+    private final ModelMapper modelMapper;
 
-    public ArticleServiceImpl(ArticleRepository articleRepository) {
+    public ArticleServiceImpl(ArticleRepository articleRepository, ModelMapper modelMapper) {
         this.articleRepository = articleRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -44,5 +49,11 @@ public class ArticleServiceImpl implements ArticleService {
         List<Article> articles = apiResponse.getArticles();
         articleRepository.saveAll(articles);
         return "Successfully saved.";
+    }
+
+    @Override
+    public List<ArticleDTO> getAll() {
+        List<Article> articles = articleRepository.findAll();
+        return modelMapper.map(articles, new TypeToken<List<ArticleDTO>>(){}.getType());
     }
 }
