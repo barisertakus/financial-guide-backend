@@ -16,23 +16,39 @@ public class Article {
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String id;
+
     private String title;
+
     private String author;
+
     private LocalDateTime publishedDate;
+
     private String publishedDatePrecision;
+
     private String cleanUrl;
+
     @Column(columnDefinition = "TEXT")
     private String excerpt;
+
     @Column(columnDefinition = "TEXT")
     private String summary;
+
     private String rights;
+
     private int rank;
+
     private String topic;
+
     private String country;
+
     private String language;
+
  //   private List<String> authors;
+    @Column(columnDefinition = "TEXT")
     private String media;
+
     private Boolean isOpinion;
+
     private String twitterAccount;
 
 }
