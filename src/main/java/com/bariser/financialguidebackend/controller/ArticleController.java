@@ -36,4 +36,9 @@ public class ArticleController {
         return ResponseEntity.ok(articleService.getLatestArticles());
     }
 
+    @GetMapping("getByTopic")
+    public ResponseEntity<List<ArticleDTO>> getLatestByTopic(String topic){
+        return ResponseEntity.ok(articleService.getLatestByTopic(topic));
+    }
+
 }

@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ArticleRepository extends JpaRepository<Article, String> {
     List<Article> findFirst10By();
+    List<Article> findFirst10ByTopic(String topic);
 }
