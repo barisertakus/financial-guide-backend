@@ -26,6 +26,6 @@ public class ArticleSchedulerServiceImpl implements ArticleSchedulerService {
                 "Execute Article Service Job", ArticleGetJob.class,
                 this.triggerName, this.triggerGroup,
                 "Execute Article Service Trigger",
-                "10,40 * * ? * * *");
+                "0 0 * ? * * *");
     }
 }

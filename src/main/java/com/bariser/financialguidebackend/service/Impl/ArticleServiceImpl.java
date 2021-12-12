@@ -56,4 +56,10 @@ public class ArticleServiceImpl implements ArticleService {
         List<Article> articles = articleRepository.findAll();
         return modelMapper.map(articles, new TypeToken<List<ArticleDTO>>(){}.getType());
     }
+
+    @Override
+    public List<ArticleDTO> getLatestArticles() {
+        List<Article> articles = articleRepository.findFirst10By();
+        return modelMapper.map(articles, new TypeToken<List<ArticleDTO>>(){}.getType());
+    }
 }
