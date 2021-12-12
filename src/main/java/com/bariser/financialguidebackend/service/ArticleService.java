@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface ArticleService {
     String getArticlesFromCatcher() throws JsonProcessingException;
+    String getArticlesFromCatcherByTopic(String topic) throws JsonProcessingException;
 
     List<ArticleDTO> getAll();
 

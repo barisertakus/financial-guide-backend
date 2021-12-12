@@ -23,6 +23,11 @@ public class ArticleController {
         return ResponseEntity.ok(articleService.getArticlesFromCatcher());
     }
 
+    @GetMapping("getArticlesFromCatcherByTopic")
+    public ResponseEntity<String> getArticlesFromCatcherByTopic(@RequestParam String topic) throws JsonProcessingException {
+        return ResponseEntity.ok(articleService.getArticlesFromCatcherByTopic(topic));
+    }
+
     @GetMapping("getAll")
     public ResponseEntity<List<ArticleDTO>> getAll(){
         return ResponseEntity.ok(articleService.getAll());
