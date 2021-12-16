@@ -15,4 +15,8 @@ public interface ArticleService {
     List<ArticleDTO> getLatestArticles();
 
     List<ArticleDTO> getLatestByTopic(String topic);
+
+    List<ArticleDTO> getLastSearchResults(String topic);
+
+    List<ArticleDTO> getSearchResults(String search);
 }

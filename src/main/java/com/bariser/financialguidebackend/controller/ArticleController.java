@@ -43,4 +43,14 @@ public class ArticleController {
         return ResponseEntity.ok(articleService.getLatestByTopic(topic));
     }
 
+    @GetMapping("searchLatest")
+    public ResponseEntity<List<ArticleDTO>> getLastSearchResults(@RequestParam String search){
+        return ResponseEntity.ok(articleService.getLastSearchResults(search));
+    }
+
+    @GetMapping("search")
+    public ResponseEntity<List<ArticleDTO>> getSearchResults(@RequestParam String search){
+        return ResponseEntity.ok(articleService.getSearchResults(search));
+    }
+
 }

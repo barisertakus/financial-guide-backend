@@ -12,6 +12,8 @@ import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.util.Strings;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.*;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Service;
@@ -62,6 +64,20 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<ArticleDTO> getLatestByTopic(String topic) {
         List<Article> articles = articleRepository.findFirst10ByTopic(topic);
+        return modelMapper.map(articles, new TypeToken<List<ArticleDTO>>(){}.getType());
+    }
+
+    @Override
+    public List<ArticleDTO> getLastSearchResults(String topic){
+        Pageable pageable = PageRequest.of(0, 10);
+        List<Article> articles = articleRepository.getLatestSearch(topic, pageable);
+        return modelMapper.map(articles, new TypeToken<List<ArticleDTO>>(){}.getType());
+    }
+
+    @Override
+    public List<ArticleDTO> getSearchResults(String search) {
+        Pageable pageable = PageRequest.of(0, 100);
+        List<Article> articles = articleRepository.getBySearch(search, pageable);
         return modelMapper.map(articles, new TypeToken<List<ArticleDTO>>(){}.getType());
     }
 
